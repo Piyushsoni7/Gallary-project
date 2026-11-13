@@ -7,7 +7,7 @@ const App = () => {
   const [UserData, setUserData] = useState([])
    const [index,setindex]=useState(1)
     const getData= async()=>{
-      const response= await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=21`)
+      const response= await axios.get( `https://api.thecatapi.com/v1/images/search?limit=21&page=${index - 1}`)
       setUserData(response.data)
       console.log(response.data)
     }
@@ -27,10 +27,9 @@ const App = () => {
       getData()
     },[index])
   return (
-    <div className='bg-black h-screen p-4 text-white'>
+<div className='bg-black min-h-screen p-3 sm:p-4 text-white'>      
   
-    <div className=' h-[82%] flex flex-wrap gap-4 p-4 mb-10 ' >
-      {printUserData}
+<div className='w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-2 sm:p-4 mb-8'>      {printUserData}
     </div>
     <div className='flex justify-center gap-6 items-center '>
       <button onClick={()=>{
